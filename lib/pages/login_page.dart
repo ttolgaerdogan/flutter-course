@@ -10,6 +10,7 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   String name = "";
+  bool changeButton = false;
 
   @override
   Widget build(BuildContext context) {
@@ -57,14 +58,46 @@ class _LoginPageState extends State<LoginPage> {
                   const SizedBox(
                     height: 40.0,
                   ),
-                  ElevatedButton(
-                    style:
-                        TextButton.styleFrom(minimumSize: const Size(150, 40)),
-                    onPressed: () {
+                  InkWell(
+                    onTap: () async {
+                      setState(() {
+                        changeButton = true;
+                      });
+
+                      await Future.delayed(const Duration(seconds: 1));
                       Navigator.pushNamed(context, MyRoutes.homeRoute);
                     },
-                    child: const Text("Giriş Yap"),
-                  )
+                    child: AnimatedContainer(
+                      duration: const Duration(seconds: 1),
+                      width: changeButton ? 50 : 150,
+                      height: 40,
+                      alignment: Alignment.center,
+                      decoration: BoxDecoration(
+                          color: Colors.deepPurple,
+                          borderRadius:
+                              BorderRadius.circular(changeButton ? 50 : 8)),
+                      child: changeButton
+                          ? const Icon(
+                              Icons.done,
+                              color: Colors.white,
+                            )
+                          : const Text(
+                              "Giriş Yap",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16),
+                            ),
+                    ),
+                  ),
+                  // ElevatedButton(
+                  //   style:
+                  //       TextButton.styleFrom(minimumSize: const Size(150, 40)),
+                  //   onPressed: () {
+                  //     Navigator.pushNamed(context, MyRoutes.homeRoute);
+                  //   },
+                  //   child: const Text("Giriş Yap"),
+                  // )
                 ],
               ),
             )
