@@ -13,7 +13,7 @@ class MyDrawer extends StatelessWidget {
       child: Container(
         color: Colors.deepPurple,
         child: ListView(
-          children: [
+          children: const [
             DrawerHeader(
               padding: EdgeInsets.zero,
               child: UserAccountsDrawerHeader(
