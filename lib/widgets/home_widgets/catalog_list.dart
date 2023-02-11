@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/utils/routes.dart';
 import 'package:velocity_x/velocity_x.dart';
 import '../../models/catalog.dart';
 import '../../pages/home_detail_page.dart';
@@ -59,13 +60,14 @@ class CatalogItem extends StatelessWidget {
                 children: [
                   "${catalog.price} ₺".text.bold.lg.make(),
                   ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () =>
+                          Navigator.pushNamed(context, MyRoutes.cartRoute),
                       style: ButtonStyle(
                           backgroundColor: MaterialStateProperty.all(
                               MyTheme.darkBluishColor),
                           shape:
                               MaterialStateProperty.all(const StadiumBorder())),
-                      child: "Buy".text.make())
+                      child: "Add to cart".text.make())
                 ],
               ).pOnly(right: 8.0)
             ],
