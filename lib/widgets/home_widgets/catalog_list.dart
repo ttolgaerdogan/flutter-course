@@ -35,6 +35,7 @@ class CatalogItem extends StatelessWidget {
 
   const CatalogItem({super.key, required this.catalog});
   // : assert(catalog != null)
+
   @override
   Widget build(BuildContext context) {
     return VxBox(
