@@ -3,7 +3,12 @@ import '../models/cart.dart';
 import '../models/catalog.dart';
 
 class MyStore extends VxStore {
-  CatalogModel catalog;
-  CartModel cart;
-  cart.catalog = catalog;
+  late CatalogModel catalog;
+  late CartModel cart;
+
+  MyStore() {
+    catalog = CatalogModel();
+    cart = CartModel();
+    cart.catalog = catalog;
+  }
 }
