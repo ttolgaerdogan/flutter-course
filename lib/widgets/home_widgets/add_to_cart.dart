@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:velocity_x/velocity_x.dart';
 
+import '../../core/store.dart';
 import '../../models/cart.dart';
 import '../../models/catalog.dart';
 
@@ -14,18 +15,24 @@ class AddToCart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _cart = CartModel();
+    // final _cart = CartModel();
+
+    VxState.watch(context, on: [AddMutation]);
+    final CartModel _cart = (VxState.store as MyStore).cart;
+    // final CatalogModel _catalog = (VxState.store as MyStore).catalog;
     bool isInCart = _cart.items.contains(catalog);
+
     return ElevatedButton(
         onPressed: () {
           if (!isInCart) {
-            isInCart = isInCart.toggle();
+            // isInCart = isInCart.toggle();
+            // _cart.catalog = _catalog;
+            AddMutation(catalog);
           }
-          isInCart = isInCart.toggle();
-          final _catalog = CatalogModel();
+          // isInCart = isInCart.toggle();
+          // final _catalog = CatalogModel();
           // final _cart = CartModel();
-          _cart.catalog = _catalog;
-          _cart.add(catalog);
+
           // setState(() {});
         },
         // onPressed: () => Navigator.pushNamed(context, MyRoutes.cartRoute),
